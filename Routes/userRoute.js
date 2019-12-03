@@ -1,31 +1,31 @@
 const express = require('express');
 const router = express.Router()
-const Users = require('../dB/models/userSchema');
 const userOperations = require('../dB/services/userOperations');
+const {validate, signupValidations, loginValidation} = require('../helpers/customValidator');
 
 router.get('/', (req, res) => {
     res.send("SERVER running successfully");
 });
 
-router.post('/signup', (req, res) => {
-    const userDetail = req.body;
-    console.log("req.body.firstName", req.body.firstName);
-    let newUser = new Users({
-        firstName: userDetail.firstName,
-        lastName: userDetail.lastName,
-        emailId: userDetail.emailId,
-        password: userDetail.password,
-        address: userDetail.address,
-        phoneNo: userDetail.phoneNo
-    });
-    console.log("Users>>>", newUser);
-    userOperations.register(newUser).then(data=>{
-        console.log("data>>>", data)
+router.post('/signup', validate(signupValidations),
+    (req, res) => {
+        const userDetail = req.body;
+        userOperations.register(userDetail).then(data => {
+            res.status(200).send(data);
+        }).catch(err => {
+            res.status(404).send(err);
+        })
+    }
+);
+
+router.post('/signIn', (req,res)=>{
+    const userData = req.body;
+    userOperations.signInUser(userData).then(data=>{
         res.status(200).send(data);
     }).catch(err=>{
-        console.log("error>>>>>>>", err)
-        res.status(404).send(err);
+        console.log("inside catch", err );
+        res.status(400).send(err);
     })
-});
+})
 
 module.exports = router;
