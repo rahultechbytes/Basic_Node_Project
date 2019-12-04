@@ -1,6 +1,6 @@
 const User = require('../models/userSchema');
 
-register = (userDetail) => {
+const register = (userDetail) => {
     let newUser = new User({
         firstName: userDetail.firstName,
         lastName: userDetail.lastName,
@@ -12,14 +12,19 @@ register = (userDetail) => {
     return newUser.save()
 };
 
-signInUser = (userDetail) =>{
+signInUser = (userDetail) => {
     return User.find({
         emailId: userDetail.emailId,
         password: userDetail.password
     });
-} 
+}
+
+usersList = () => {
+    return User.find({});
+}
 
 module.exports = {
     register,
-    signInUser
+    signInUser,
+    usersList
 }

@@ -7,18 +7,19 @@ const signupValidations = [
     body('emailId').not().isEmpty().withMessage('please enter a valid Email address.').normalizeEmail().isEmail(),
     body('password')
         .not().isEmpty().withMessage('password is required')
-        .isLength({ min: 10, max: 32 })
+        .isLength({ min: 6, max: 32 })
         .withMessage('must be 10 to 32 characters')
         .withMessage('password should be combination of one uppercase,'
             + ' one lower case, one special char, one digit'),
 ];
 
 const loginValidation = [
-    body('password').isLength({ min: 5 }),
+    body('emailId').not().isEmpty().withMessage('please enter a valid Email address.').normalizeEmail().isEmail(),
+    body('password').isLength({ min: 5, max: 10 }),
 ];
 
 const validate = (validations) => async (req, res, next) => {
-    // console.log("validations >>>>>", validations)
+    console.log("validations >>>>>", req.body)
     await Promise.all(validations.map(validation => validation.run(req)));
     const errors = validationResult(req);
     if (errors.isEmpty()) {

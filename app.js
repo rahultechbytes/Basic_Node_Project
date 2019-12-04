@@ -6,12 +6,13 @@ const route = require('./Routes/indexRoute');
 const mongoDb = require('./dB/utils/connection');
 const bodyParser = require('body-parser');
 
-mongoDb.dbConnect();
+mongoDb.dbConnect();                                    //mongo connection
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));    //body-parser 
 app.use(bodyParser.json());
 
-app.use('/', route);
+
+app.use('/', route);                                    //route Initialize
 
 app.listen(PORT, () => {
     console.log(`Server running on PORT: ${PORT}`)
