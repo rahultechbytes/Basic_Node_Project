@@ -8,7 +8,14 @@ module.exports.signIn = (req, res) => {
     userOperations.signInUser(userData).then(data => {
         jwt.sign({ userData: userData }, secretKey, { expiresIn: '1h' }, (err, token) => {
             if (err) {
-                console.log("jwt token error", err)
+                console.log("jwt token error", err);
+                res.status(404).json({
+                    'statusCode': 404,
+                    'success': false,
+                    'timestamp': new Date(),
+                    'message': 'TOKEN ERROR',
+                    err
+                });
             }
             else {
                 res.status(200).json({

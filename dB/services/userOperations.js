@@ -12,14 +12,14 @@ const register = (userDetail) => {
     return newUser.save()
 };
 
-signInUser = (userDetail) => {
+const signInUser = (userDetail) => {
     return User.find({
         emailId: userDetail.emailId,
         password: userDetail.password
     });
 }
 
-usersList = () => {
+const usersList = () => {
     return User.find({});
 }
 

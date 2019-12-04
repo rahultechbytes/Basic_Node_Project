@@ -7,15 +7,20 @@ const signupValidations = [
     body('emailId').not().isEmpty().withMessage('please enter a valid Email address.').normalizeEmail().isEmail(),
     body('password')
         .not().isEmpty().withMessage('password is required')
-        .isLength({ min: 6, max: 32 })
+        .isLength({ min: 6, max: 12 })
         .withMessage('must be 10 to 32 characters')
-        .withMessage('password should be combination of one uppercase,'
+        .matches(/([A-Za-z])\w+/).withMessage('password should be combination of one uppercase,'
             + ' one lower case, one special char, one digit'),
 ];
 
 const loginValidation = [
     body('emailId').not().isEmpty().withMessage('please enter a valid Email address.').normalizeEmail().isEmail(),
-    body('password').isLength({ min: 5, max: 10 }),
+    body('password')
+        .not().isEmpty().withMessage('password is required')
+        .isLength({ min: 6, max: 12 })    
+        .withMessage('must be 10 to 32 characters')
+        .withMessage('password should be combination of one uppercase,'
+        + ' one lower case, one special char, one digit'),
 ];
 
 const validate = (validations) => async (req, res, next) => {
