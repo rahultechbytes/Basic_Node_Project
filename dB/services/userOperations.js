@@ -13,7 +13,7 @@ const register = (userDetail) => {
 };
 
 const signInUser = (userDetail) => {
-    return User.find({
+    return User.findOne({
         emailId: userDetail.emailId,
         password: userDetail.password
     });
