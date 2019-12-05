@@ -7,6 +7,8 @@ function dbConnect() {
         console.log(`db started on URL: ${process.env.DB_URL}`);
     });
 }
+// mongoose.set("debug",true);
+
 
 module.exports = {
     dbConnect

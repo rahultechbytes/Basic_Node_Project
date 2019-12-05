@@ -23,8 +23,13 @@ const usersList = () => {
     return User.find({});
 }
 
+const deleteUser = (id) => {
+    return User.findByIdAndDelete({ _id: id });
+}
+
 module.exports = {
     register,
     signInUser,
-    usersList
+    usersList,
+    deleteUser
 }

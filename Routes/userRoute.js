@@ -16,5 +16,7 @@ router.post('/signup', validate(signupValidations), signUpFile.signUp);
 
 router.get('/profiles', verifyToken, userFile.userProfile);
 
+router.delete('/deleteUser', verifyToken, userFile.userDelete)
+
 
 module.exports = router;
