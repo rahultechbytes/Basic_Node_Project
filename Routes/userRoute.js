@@ -5,12 +5,13 @@ const signUpFile = require('../controllers/user/signUp');
 const signInFile = require('../controllers/user/signIn');
 const userFile = require('../controllers/user/profile');
 const verifyToken = require('../auth/jwtVerification');
+const passport = require('passport');
 
 router.get('/', (req, res) => {
     res.send("SERVER running successfully");
 });
 
-router.post('/signIn', validate(loginValidation), signInFile.signIn)
+router.post('/signIn', validate(loginValidation), passport.authenticate('local', { session: false }), signInFile.signIn)
 
 router.post('/signup', validate(signupValidations), signUpFile.signUp);
 

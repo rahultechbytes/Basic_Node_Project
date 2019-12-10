@@ -12,10 +12,11 @@ const register = (userDetail) => {
     return newUser.save()
 };
 
-const signInUser = (userDetail) => {
+const signInUser = (username, password) => {
+    console.log("inside db operations>>>")
     return User.findOne({
-        emailId: userDetail.emailId,
-        password: userDetail.password
+        emailId: username,
+        password: password
     });
 }
 
