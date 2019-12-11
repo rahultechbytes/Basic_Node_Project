@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session')
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+
 
 mongoDb.dbConnect();                                    //mongo connection
 
@@ -25,6 +27,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 require('./auth/passport');
+app.use(flash());
+
 
 app.use('/', route);                                    //route Initialize
 
