@@ -1,5 +1,5 @@
 const userOperations = require('../../dB/services/userOperations');
-
+const bcrypt = require('../../helpers/bcrypt');
 
 module.exports.signUp = (req, res) => {
     const userDetail = req.body;

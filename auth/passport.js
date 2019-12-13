@@ -9,12 +9,9 @@ passport.use(new LocalStrategy({
     function (username, password, done) {
         console.log("=================> Here", username, password)
         userOperations.signInUser(username, password).then(result => {
-            console.log("result ===> ", result);
             if (result) {
-                console.log("inside success IF");
                 done(null, result)
             } else {
-                console.log("inside success ELSE")
                 done(null, false, { message: "invalid username/password" })
             }
         }).catch(err => {

@@ -1,23 +1,25 @@
 const User = require('../models/userSchema');
+const bcrypt = require('../../helpers/bcrypt')
 
-const register = (userDetail) => {
+const register = async (userDetail) => {
+    let userPwd = await bcrypt.passEncode(userDetail.password);
     let newUser = new User({
         firstName: userDetail.firstName,
         lastName: userDetail.lastName,
         emailId: userDetail.emailId,
-        password: userDetail.password,
+        password: userPwd,
         address: userDetail.address,
         phoneNo: userDetail.phoneNo
     });
     return newUser.save()
 };
 
-const signInUser = (username, password) => {
-    console.log("inside db operations>>>")
-    return User.findOne({
-        emailId: username,
-        password: password
-    });
+const signInUser = async (emailId, userPassword) => {
+    let userDetail = await User.findOne({ emailId: emailId })
+    let decodedPwd = await bcrypt.passCompare(userPassword, userDetail.password);
+    if(decodedPwd){
+        return userDetail;
+    }
 }
 
 const usersList = () => {
