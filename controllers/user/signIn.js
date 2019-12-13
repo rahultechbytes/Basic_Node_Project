@@ -7,9 +7,8 @@ module.exports.signIn = (req, res) => {
     console.log("inside signIn")
     const userData = req.body;
     console.log("userdata>>>", userData);
-    jwt.sign({ userData: userData }, secretKey, { expiresIn: '1h' }, (err, token) => {
+    jwt.sign({ userData: userData.emailId }, secretKey, { expiresIn: '1h' }, (err, token) => {
         if (err) {
-            console.log("err on JWT", err)
             console.log("jwt token error", err);
             res.status(404).json({
                 'statusCode': 404,
