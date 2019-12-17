@@ -9,7 +9,7 @@ const session = require('express-session')
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
-
+const job = require('./utils/cronJob');
 
 mongoDb.dbConnect();                                    //mongo connection
 
@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));    //body-parser 
 app.use(bodyParser.json());
 
-app.use(session({ 
+app.use(session({
     resave: false,
     saveUninitialized: true,
     secret: 'keyboard cat',
@@ -29,6 +29,10 @@ app.use(passport.session());
 require('./auth/passport');
 app.use(flash());
 
+job.start                                           //CRON JOB
+
+// const { dbDump } = require('./dB/utils/dbBackup');
+// dbDump()
 
 app.use('/', route);                                    //route Initialize
 
