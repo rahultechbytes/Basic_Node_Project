@@ -10,7 +10,7 @@
 /build
 
 #DB Dump
-/dump/nodeApp
+/Backup/
 
 # misc
 .DS_Store
