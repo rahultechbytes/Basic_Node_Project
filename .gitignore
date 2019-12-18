@@ -9,6 +9,9 @@
 # production
 /build
 
+#DB Dump
+/dump/nodeApp
+
 # misc
 .DS_Store
 .env
