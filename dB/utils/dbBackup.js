@@ -114,20 +114,19 @@
 
 const { exec } = require('child_process');
 const path = require('path');
+const dbHost = 'localhost:27017';
+const dbName = 'nodeApp'
 
 module.exports.dbDump = () => {
-    console.log("dbDump func executed");
-    console.log("path.extname");
-    console.log(" process.cwd()>>>",process.cwd())
-    console.log("__dirname", __dirname);
     let backupFolder = process.cwd()
-    let cmd = `mongodump --host localhost:27017 --db nodeApp --out ~/Desktop/Basic_Node_Project/Backup/`;
+    let cmd = `mongodump --host ${dbHost} --db ${dbName} --out ${backupFolder}/Backup/`;
     let child = exec(cmd);
     child.stdout.on('data', function (data) {
         console.log("data...", data);
     });
-    child.stderr.on('data', function (data) {
-        console.log("==================", cmd, "\n", 'mongodump StdERROut: ', data, "\n===========================");
+    child.stderr.on('data', function (err) {
+        console.log("==================", cmd, "\n", 'mongodump StdERROut: ', err, "\n===========================");
     });
+    
 
 }

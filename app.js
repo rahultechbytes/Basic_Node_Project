@@ -29,7 +29,7 @@ app.use(passport.session());
 require('./auth/passport');
 app.use(flash());
 
-job.start                                           //CRON JOB
+job.start()                                           //CRON JOB
 
 // const { dbDump } = require('./dB/utils/dbBackup');
 // dbDump()

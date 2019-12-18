@@ -8,7 +8,7 @@
     "test": "mocha 'test/**/*.js'"
   },
   "nodemonConfig": {
-    "ignore": ["Backup/*", "docs/*"]
+    "ignore": ["Backup/*"]
   },
   "repository": {
     "type": "git",
