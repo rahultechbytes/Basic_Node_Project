@@ -61,6 +61,6 @@ secureServer.listen(5003, () => {
 
 //route Initialize
 
-app.listen(PORT, () => {
-    console.log('HTTP server running on port', PORT);
-})
+// app.listen(PORT, () => {
+//     console.log('HTTP server running on port', PORT);
+// })

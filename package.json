@@ -4,7 +4,7 @@
   "description": "A basic node express application",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon app",
+    "dev": "node app",
     "test": "mocha 'test/**/*.js'"
   },
   "nodemonConfig": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/rahulj236/Basic_Node_Project#readme",
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcrypt": "4.0.0",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
